@@ -4,10 +4,9 @@ import ballerinax/kubernetes;
 
 // By default, Ballerina exposes a service via HTTP/1.1.
 
-
 @kubernetes:Service {
     serviceType: "NodePort",
-    name: "ballerina-demo"
+    name: "ballerina-codefresh-demo"
 }
 endpoint http:Listener listener {
     port: 9090
@@ -15,8 +14,8 @@ endpoint http:Listener listener {
 
 @kubernetes:Deployment {
     image: "kasunindrasiri/ballerina-codefresh-hello",
-    name: "ballerina-demo",
-    buildImage: false
+    name: "ballerina-codefresh-demo",
+    buildImage: true
 }
 
 service<http:Service> hello bind listener {
