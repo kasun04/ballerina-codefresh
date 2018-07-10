@@ -15,7 +15,7 @@ endpoint http:Listener listener {
 @kubernetes:Deployment {
     image: "kasunindrasiri/ballerina-codefresh-hello",
     name: "ballerina-codefresh-demo",
-    buildImage: true
+    buildImage: false
 }
 
 service<http:Service> hello bind listener {
