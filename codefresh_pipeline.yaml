@@ -18,13 +18,12 @@ steps:
     working_directory: ./hello-world-service/kubernetes/docker/
     tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
     dockerfile: Dockerfile
-  deploy:
-    title: Kubernetes deploy step
-    image: codefresh/cli:latest
+  unit_test:
+    title: Testerina Tests.
+    image: ${{build_Image}}
     commands:
-      - ls ${{CF_VOLUME_PATH}}/ballerina-codefresh/hello-world-service/kubernetes/
-      - cat ${{CF_VOLUME_PATH}}/ballerina-codefresh/hello-world-service/kubernetes/hello_world_service_deployment.yaml
-      - cat ${{CF_VOLUME_PATH}}/ballerina-codefresh/hello-world-service/kubernetes/hello_world_service_svc.yaml
+    - cd hello-world-service
+    - ballerina test hello-world-service
   deploy_to_k8s:
     title: Deploy to K8s Cluster
     type: deploy
@@ -32,20 +31,7 @@ steps:
     cluster: ${{CLUSTER}}
     namespace: ${{NAMESPACE}}
     service: test-service
-    file_path: ./hello-world-service/kubernetes/hello_world_service_deployment.yaml
     when:
       branch:
         only:
-          - master
-
-
-  YamlDeploy:
-    title: Apply YAMLs
-    image: 'codefresh/cf-deploy-kubernetes'
-    environment:
-      - CHART_NAME=none
-      - RELEASE_NAME=none
-      - KUBE_CONTEXT=${{CLUSTER}}
-      - NAMESPACE=${{NAMESPACE}}
-    commands:
-      - kubectl apply -f ${{CF_VOLUME_PATH}}/ballerina-codefresh/hello-world-service/kubernetes/.
+         - master
