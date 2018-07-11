@@ -20,12 +20,12 @@ steps:
     dockerfile: Dockerfile
   unit_test:
     title: Testerina Tests.
-    image: ${{build_Image}}
+    image: rpbo/ballerina
     commands:
-    - cd hello-world-service
+    - ballerina init
     - ballerina test hello-world-service
   deploy_to_k8s:
-    title: Deploy to K8s Cluster
+    title: Deploy to GKE Cluster
     type: deploy
     kind: kubernetes
     cluster: ${{CLUSTER}}
