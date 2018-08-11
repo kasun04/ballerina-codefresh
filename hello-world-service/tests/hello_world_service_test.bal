@@ -18,7 +18,7 @@ function testFunc() {
     // Chck whether the server is started
     test:assertTrue(serviceStarted, msg = "Unable to start the service");
 
-    string response1 = "Hello, World with Code Fresh!";
+    string response1 = "Hello, World with Codefresh!";
 
     // Send a GET request to the specified endpoint
     var response = httpEndpoint->get("/hello/sayHello");
