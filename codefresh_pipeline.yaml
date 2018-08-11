@@ -5,11 +5,7 @@ steps:
     image: rpbo/ballerina
     fail_fast: true
     commands:
-    - echo $0
-    - whoami
-    - ls -al
     - cd hello-world-service
-    - ls
     - ballerina build hello_world_service.bal
   build_Image:
     title: Build image
