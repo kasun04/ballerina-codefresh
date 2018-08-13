@@ -23,6 +23,8 @@ service<http:Service> hello bind listener {
     // Invoke all resources with arguments of server connector and request.
     sayHello(endpoint caller, http:Request req) {
         http:Response res = new;
+
+        
         // Use a util method to set a string payload.
         res.setPayload("Hello World!");
 
