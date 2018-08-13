@@ -24,7 +24,7 @@ service<http:Service> hello bind listener {
     sayHello(endpoint caller, http:Request req) {
         http:Response res = new;
         // Use a util method to set a string payload.
-        res.setPayload("Hello, World with Codefresh!");
+        res.setPayload("Hello World!");
 
         // Send the response back to the caller.
         caller->respond(res) but { error e => log:printError(
