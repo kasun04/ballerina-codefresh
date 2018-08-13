@@ -15,7 +15,7 @@ endpoint http:Listener listener {
 @kubernetes:Deployment {
     image: "r.cfcr.io/kasunindrasiri/kasunindrasiri/ballerina-codefresh-hello:master",
     name: "ballerina-codefresh-demo",
-    buildImage: false, 
+    buildImage: false,
     imagePullPolicy: "Always"
 }
 
