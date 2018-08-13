@@ -4,8 +4,12 @@ import ballerinax/kubernetes;
 
 // By default, Ballerina exposes a service via HTTP/1.1.
 
+@kubernetes:Ingress {
+    hostname:"ballerinacodefresh.com"
+}
+
 @kubernetes:Service {
-    serviceType: "LoadBalancer",
+    serviceType: "NodePort",
     name: "ballerina-codefresh-demo" 
 }
 endpoint http:Listener listener {
