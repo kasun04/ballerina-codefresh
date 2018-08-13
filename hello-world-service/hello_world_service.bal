@@ -13,7 +13,7 @@ endpoint http:Listener listener {
 };
 
 @kubernetes:Deployment {
-    image: "kasunindrasiri/ballerina-codefresh-hello",
+    image: "r.cfcr.io/kasunindrasiri/kasunindrasiri/ballerina-codefresh-hello:master",
     name: "ballerina-codefresh-demo",
     buildImage: false
 }
