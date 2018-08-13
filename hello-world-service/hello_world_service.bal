@@ -16,7 +16,8 @@ endpoint http:Listener listener {
     image: "r.cfcr.io/kasunindrasiri/kasunindrasiri/ballerina-codefresh-hello:master",
     name: "ballerina-codefresh-demo",
     buildImage: false,
-    imagePullPolicy: "Always"
+    imagePullPolicy: "Always", 
+    imagePullSecrets: "codefresh-generated-r.cfcr.io-cfcr-default"
 }
 
 service<http:Service> hello bind listener {
