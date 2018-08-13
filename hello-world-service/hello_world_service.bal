@@ -6,8 +6,7 @@ import ballerinax/kubernetes;
 
 @kubernetes:Service {
     serviceType: "LoadBalancer",
-    name: "ballerina-codefresh-demo",
-    port:80
+    name: "ballerina-codefresh-demo"
 }
 endpoint http:Listener listener {
     port: 9090
