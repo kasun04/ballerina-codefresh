@@ -28,7 +28,7 @@ service<http:Service> hello bind listener {
 
 
         // Use a util method to set a string payload.
-        res.setPayload("Hello World from Ballerina and Codefresh!");
+        res.setPayload("Hello World from Ballerina!");
 
         // Send the response back to the caller.
         caller->respond(res) but { error e => log:printError(
