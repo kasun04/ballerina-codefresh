@@ -23,7 +23,7 @@ endpoint http:Listener listener {
 service<http:Service> hello bind listener {
     sayHello(endpoint caller, http:Request req) {
         http:Response res = new;
-        res.setPayload("Hello World!");
+        res.setPayload("Hello World from Ballerina!");
         _ = caller->respond(res);
     }
 }
