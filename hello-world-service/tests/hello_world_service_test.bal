@@ -13,7 +13,7 @@ function startService() {
 }
 function testFunc() {
     endpoint http:Client httpEndpoint { url: "http://localhost:9090" };
-    string response1 = "Hello World from Ballerina!";
+    string response1 = "Hello World from Ballerina and Codefresh!";
 
     var response = httpEndpoint->get("/hello/sayHello");
     match response {

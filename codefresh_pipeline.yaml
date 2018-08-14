@@ -1,33 +1,32 @@
 version: '1.0'
 steps:
-  Ballerina_Package:
+  build_package:
     title: Build Ballerina Hello Service
-    image: rpbo/ballerina
+    image: kasunindrasiri/ballerina_cf:0.981.0
     fail_fast: true
     commands:
-    - cd hello-world-service
-    - ballerina build hello_world_service.bal
-  build_Image:
+    - ballerina init
+    - ballerina build hello-world-service
+  build_image:
     title: Build image
     type: build
     image_name: kasunindrasiri/ballerina-codefresh-hello
-    working_directory: ./hello-world-service/kubernetes/docker/
+    working_directory: ./target/kubernetes/hello-world-service/docker/
+    no_cache: false
+    no_cf_cache: false
     tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
     dockerfile: Dockerfile
   unit_test:
-    title: Testerina Tests.
-    image: rpbo/ballerina
+    title: Run Ballerina unit tests
+    image: kasunindrasiri/ballerina_cf:0.981.0
     commands:
     - ballerina init
     - ballerina test hello-world-service
-  deploy_to_k8s:
-    title: Deploy to GKE Cluster
-    type: deploy
-    kind: kubernetes
-    cluster: ${{CLUSTER}}
-    namespace: ${{NAMESPACE}}
-    service: test-service
-    when:
-      branch:
-        only:
-         - master
+    
+  deploy_from_ballerina_k8s_artifacts:
+    title: Deploying from generated Ballerina Kuberbetes artifacts.
+    image: 'codefresh/kube-helm:master'
+    commands:
+      - kubectl config use-context cluster-1@ballerina-helloworld
+      - kubectl delete -f ${{CF_VOLUME_PATH}}/ballerina-codefresh/target/kubernetes/hello-world-service/hello-world-service_deployment.yaml 
+      - kubectl apply -f ${{CF_VOLUME_PATH}}/ballerina-codefresh/target/kubernetes/hello-world-service

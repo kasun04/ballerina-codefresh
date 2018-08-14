@@ -21,7 +21,7 @@ endpoint http:Listener listener {
 service<http:Service> hello bind listener {
     sayHello(endpoint caller, http:Request req) {
         http:Response res = new;
-        res.setPayload("Hello World from Ballerina!");
+        res.setPayload("Hello World from Ballerina and Codefresh!");
         _ = caller->respond(res);
     }
 }
