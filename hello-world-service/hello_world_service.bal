@@ -2,8 +2,6 @@ import ballerina/http;
 import ballerina/log;
 import ballerinax/kubernetes;
 
-// By default, Ballerina exposes a service via HTTP/1.1.
-
 @kubernetes:Service {
     serviceType: "LoadBalancer",
     name: "ballerina-codefresh-demo" 
