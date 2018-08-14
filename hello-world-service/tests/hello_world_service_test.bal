@@ -5,7 +5,7 @@ import ballerina/http;
 boolean serviceStarted;
 
 function startService() {
-    serviceStarted = test:startServices("hello-world-service");
+    //serviceStarted = test:startServices("hello-world-service");
 }
 
 @test:Config {
