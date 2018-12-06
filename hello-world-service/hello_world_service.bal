@@ -10,6 +10,7 @@ endpoint http:Listener listener {
     port: 9090
 };
 
+
 @kubernetes:Deployment {
     image: "r.cfcr.io/kasunindrasiri/kasunindrasiri/ballerina-codefresh-hello:master",
     name: "ballerina-codefresh-demo",
@@ -21,7 +22,7 @@ endpoint http:Listener listener {
 service<http:Service> hello bind listener {
     sayHello(endpoint caller, http:Request req) {
         http:Response res = new;
-        res.setPayload("Hello World from Ballerina and Codefresh!");
+        res.setPayload("Hello World Kasun : from Ballerina and Codefresh!");
         _ = caller->respond(res);
     }
 }
