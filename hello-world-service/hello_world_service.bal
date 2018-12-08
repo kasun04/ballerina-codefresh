@@ -7,8 +7,8 @@ import ballerinax/kubernetes;
     name: "ballerina-codefresh-demo" 
 }
 
-
 @kubernetes:Deployment {
+    singleYAML: false, 
     image: "r.cfcr.io/kasunindrasiri/kasunindrasiri/ballerina-codefresh-hello:master",
     name: "ballerina-codefresh-demo",
     buildImage: false,
