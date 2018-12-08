@@ -6,9 +6,6 @@ import ballerinax/kubernetes;
     serviceType: "LoadBalancer",
     name: "ballerina-codefresh-demo" 
 }
-endpoint http:Listener listener {
-    port: 9090
-};
 
 
 @kubernetes:Deployment {
@@ -19,8 +16,10 @@ endpoint http:Listener listener {
     imagePullSecrets: ["codefresh-generated-r.cfcr.io-cfcr-default"]
 }
 
-service<http:Service> hello bind listener {
-    sayHello(endpoint caller, http:Request req) {
+// http:Listener http_ep = new (9090); 
+
+service hello on new http:Listener(9090) {
+    resource function sayHello (http:Caller caller, http:Request req) {
         http:Response res = new;
         res.setPayload("Hello World from Ballerina and Codefresh!");
         _ = caller->respond(res);
