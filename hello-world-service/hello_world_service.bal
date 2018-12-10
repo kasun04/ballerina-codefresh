@@ -9,6 +9,7 @@ import ballerinax/kubernetes;
 
 @kubernetes:Deployment {
     singleYAML: false, 
+    baseImage:"kasunindrasiri/ballerina_cf:0.990.0",
     image: "r.cfcr.io/kasunindrasiri/kasunindrasiri/ballerina-codefresh-hello:master",
     name: "ballerina-codefresh-demo",
     buildImage: false,
