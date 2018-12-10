@@ -17,12 +17,10 @@ import ballerinax/kubernetes;
     imagePullSecrets: ["codefresh-generated-r.cfcr.io-cfcr-default"]
 }
 
-// http:Listener http_ep = new (9090); 
-
 service hello on new http:Listener(9090) {
     resource function sayHello (http:Caller caller, http:Request req) {
         http:Response res = new;
-        res.setPayload("Hello World from Ballerina and Codefresh!");
+        res.setPayload("Hello World from Ballerina!");
         _ = caller->respond(res);
     }
 }
