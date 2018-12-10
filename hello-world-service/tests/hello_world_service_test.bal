@@ -14,7 +14,7 @@ function startService() {
 function testFunc() {
     http:Client httpEndpoint = new("http://localhost:9090");
 
-    string response1 = "Hello World from Ballerina!";
+    string response1 = "Hello World from Ballerina and Codefresh!";
 
     var response = httpEndpoint->get("/hello/sayHello");
     if (response is http:Response) {
